@@ -1,6 +1,7 @@
 #!/bin/sh
-cat > /usr/share/nginx/html/env-config.js <<EOF
-window.__env__ = {
+mkdir -p /usr/share/nginx/html/api
+cat > /usr/share/nginx/html/api/config <<EOF
+{
   "VITE_APP_NAME": "${VITE_APP_NAME:-WReisLab React Template}",
   "VITE_API_BASE_URL": "${VITE_API_BASE_URL:-}",
   "VITE_OIDC_AUTHORITY": "${VITE_OIDC_AUTHORITY:-}",
@@ -10,6 +11,6 @@ window.__env__ = {
   "VITE_OIDC_SCOPE": "${VITE_OIDC_SCOPE:-openid profile email groups}",
   "VITE_OIDC_RESPONSE_TYPE": "${VITE_OIDC_RESPONSE_TYPE:-code}",
   "VITE_JWT_GROUPS_CLAIM": "${VITE_JWT_GROUPS_CLAIM:-groups}"
-};
+}
 EOF
 exec nginx -g 'daemon off;'
